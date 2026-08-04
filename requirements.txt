@@ -6,3 +6,4 @@ langchain
 python-dotenv 
 groq 
 deepgram-sdk
+protobuf==4.25.3

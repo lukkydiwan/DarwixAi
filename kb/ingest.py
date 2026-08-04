@@ -6,12 +6,12 @@ import chromadb
 from chromadb.utils import embedding_functions
 
 
-raw_dat_path="ka/data/raw_docs.json"
-chroma_path="/kb/chroma/db"
+raw_dat_path="kb/data/raw_docs.json"
+chroma_path="D:/CHODER/Drawix/kb/chroma_db"
 collection_name="business_loan_kb"
 
 chroma_client=chromadb.PersistentClient(path=chroma_path)
-embedding_function=embedding_functions.SentenceTransformerEmbeddingFunction(model_name="all-MiniLM-L6-v2")
+embedding_fn = embedding_functions.DefaultEmbeddingFunction()
 
 header_footer_pattern =r"(--- HEADER:.*?---)|(---FOOTER:.*?---)"
 email_pattern = r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
@@ -69,7 +69,7 @@ def run_ingestion():
     seen_hashes = set()
     cleaned_records=[]
     for idx, doc in enumerate(docs):
-        cleaned_text=clean_text(doc["text"])
+        cleaned_text=clean_text(doc["raw_text"])
         content_hash=hashlib.md5(cleaned_text.encode("utf-8")).hexdigest()
         if content_hash in seen_hashes:
             print(f"Duplicate content found for document {idx}, skipping ingestion.")
@@ -95,7 +95,7 @@ def run_ingestion():
         chroma_client.delete_collection(name=collection_name)
     except Exception:
         pass
-    collection=chroma_client.create_collection(name=collection_name, embedding_function=embedding_function)
+    collection=chroma_client.create_collection(name=collection_name, embedding_function=embedding_fn)
     ids=[r["record_id"] for r in cleaned_records]
     documents=[f"Title:{r['title']}\nCategory:{r['category']}\nContent:{r['content']}" for r in cleaned_records]
     metadatas=[{"source": r["source"], "PII_flag": r["PII_flag"], "version": r["version"]} for r in cleaned_records]
