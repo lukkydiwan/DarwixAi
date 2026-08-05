@@ -30,3 +30,11 @@
 **Call Status:** Customer's payment commitment recorded for follow-up.
 
 ---
+
+## Call 2:
+---
+**Agent:** "Halo!"
+
+The ASR failed due to the Javanese accent.
+
+---
