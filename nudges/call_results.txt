@@ -1,0 +1,49 @@
+(81ms ASR) [Speaker 0]: Thank you for calling Darby's Capital.
+(114ms ASR) [Speaker 0]: This is Alex.
+(103ms ASR) [Speaker 0]: How can I help your business today?
+(110ms ASR) [Speaker 0]: Hi, Alex.
+(100ms ASR) [Speaker 0]: I need a $50,000 equipment loan
+(113ms ASR) [Speaker 0]: for our new bakery ovens.
+(123ms ASR) [Speaker 0]: I am also planning to open a second location next year,
+
+ 🚨 NUDGE  (495ms LLM Latency)  Consider cross-selling a business credit card 
+or line of credit for the second location to increase earnings potential
+
+(133ms ASR) [Speaker 0]: but let's just focus on the ovens for now.
+(181ms ASR) [Speaker 0]: Okay.
+(94ms ASR) [Speaker 0]: We can certainly get that equipment.
+(91ms ASR) [Speaker 0]: Load set up.
+(126ms ASR) [Speaker 1]: Based on our initial profile.
+(129ms ASR) [Speaker 1]: Your interest rate will be 15%.
+(95ms ASR) [Speaker 0]: Wait. 15%?
+(124ms ASR) [Speaker 0]: Your website advertised rate
+(123ms ASR) [Speaker 0]: start at 7.5%.
+
+ 🚨 NUDGE  (571ms LLM Latency)  Please verify interest rate with the customer 
+and address their concern.
+
+(110ms ASR) [Speaker 0]: I waited on hold for twenty minutes just to get
+(109ms ASR) [Speaker 0]: bait and switched.
+(122ms ASR) [Speaker 0]: This is ridiculous and waste of my time.
+(105ms ASR) [Speaker 1]: I will need your business tax ID.
+(165ms ASR) [Speaker 1]: To drop in the 15% rate.
+(111ms ASR) [Speaker 0]: Whatever. Fine. Just do it.
+(119ms ASR) [Speaker 0]: By the way, my delivery
+(134ms ASR) [Speaker 0]: driver just dropped a huge bag of flour.
+
+ 🚨 NUDGE  (449ms LLM Latency)  Acknowledge and apologize for the 
+inconvenience to de-escalate the situation.
+
+(184ms ASR) [Speaker 0]: Hang on. Okay. Yeah. I am drinking my coffee.
+(126ms ASR) [Speaker 0]: Anyway, go ahead.
+(134ms ASR) [Speaker 0]: Great.
+(105ms ASR) [Speaker 1]: I have done your inform, sir.
+(111ms ASR) [Speaker 1]: Your loan is preapproved.
+
+ 🚨 NUDGE  (256ms LLM Latency)  Please mention the Hard Credit Pull process to
+the customer.
+
+(120ms ASR) [Speaker 1]: Have a nice day.
+(130ms ASR) [Speaker 0]: Thanks. Bye.
+
+Call Ended.
