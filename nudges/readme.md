@@ -1,4 +1,3 @@
-# 📖 Final Write-up
 
 ## 🏗️ Architecture & Streaming Method
 
