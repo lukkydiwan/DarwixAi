@@ -10,7 +10,7 @@ This repository contains the complete end-to-end implementation for the **AI Eng
 
 ## 🎥 Demo
 
-> **Video Walkthrough:** *[Insert Video Link Here]*
+> **Video Walkthrough:** *[(https://drive.google.com/file/d/1LL_A7jCL-_Qu6Q_MScJ337KOzbpeJdWH/view?usp=sharing)]*
 
 ---
 
@@ -18,7 +18,6 @@ This repository contains the complete end-to-end implementation for the **AI Eng
 
 ![Architecture Diagram](architecture.svg)
 
-> **Note:** Export your Mermaid architecture diagram as `architecture.svg` and place it in the repository root.
 
 The solution is designed as a modular, production-inspired architecture consisting of three independent pipelines.
 
@@ -32,6 +31,7 @@ The solution is designed as a modular, production-inspired architecture consisti
 │   ├── data/
 │   ├── vectordb/
 │   └── test_retrieval.py
+|   |__ recordings
 │
 ├── multilingual/
 │   ├── ph_config.json
