@@ -5,5 +5,7 @@ sentence-transformers
 langchain 
 python-dotenv 
 groq 
-deepgram-sdk
 protobuf==4.25.3
+deepgram-sdk==3.4.0 
+rich 
+pydub
