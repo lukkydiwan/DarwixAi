@@ -14,11 +14,11 @@ def run_retrieval_test():
         return
 
     queries = [
-        "What are the benefits of the Branch Partnership?",
-        "How do I renew my life insurance policy?",
-        "What is the maximum loan amount?",
-        "Do you accept cryptocurrency for premium payments?",
-        "What is Darwix Capital's refund policy?"
+        "What documents do I need to qualify for a business loan?",
+        "Is there a penalty for early payoff or prepayment?",
+        "What is the maximum loan amount available?",
+        "How long does the approval process take?",
+        "Do you accept cryptocurrency for loan repayments?"
     ]
 
     output_lines = ["# Question 2: Retrieval Testing Results\n"]

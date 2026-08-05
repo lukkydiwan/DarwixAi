@@ -99,7 +99,7 @@ def run_ingestion():
     collection=chroma_client.create_collection(name=collection_name, embedding_function=embedding_fn)
     ids=[r["record_id"] for r in cleaned_records]
     documents=[f"Title:{r['title']}\nCategory:{r['category']}\nContent:{r['content']}" for r in cleaned_records]
-    metadatas=[{"source": r["source"], "PII_flag": r["PII_flag"], "version": r["version"]} for r in cleaned_records]
+    metadatas=[{"source": r["source"], "category": r["category"], "PII_flag": r["PII_flag"], "version": r["version"]} for r in cleaned_records]
     collection.add(ids=ids, documents=documents, metadatas=metadatas)
 
     print(f"Ingestion completed. {len(cleaned_records)} records ingested into ChromaDB collection '{collection_name}'.")

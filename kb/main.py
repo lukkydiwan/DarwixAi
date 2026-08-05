@@ -2,6 +2,7 @@ from fastapi import FastAPI, Query ,Request
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import chromadb
+import os
 from chromadb.utils import embedding_functions
 
 app=FastAPI(title="Business Loan Knowledge Base API", description="API for querying the business loan knowledge base.")
@@ -13,8 +14,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-chroma_path="D:/CHODER/Drawix/kb/chroma_db"
+base_dir=os.path.dirname(os.path.abspath(__file__))
+chroma_path=os.path.join(base_dir, "chroma_db")
 collection_name="business_loan_kb"
 
 chroma_client=chromadb.PersistentClient(path=chroma_path)
