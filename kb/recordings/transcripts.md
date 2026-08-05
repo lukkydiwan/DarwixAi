@@ -1,6 +1,6 @@
 # Question 1: Test Call Transcripts
 
-## Call 1: Business Loan Pre-Qualification
+## Call 1: Cooperative
 **Scenario:** A bakery owner asks about loan interest rates before proceeding with the qualification process.
 
 **Result:**
@@ -36,7 +36,7 @@
 
 ---
 
-## Call 2: Out-of-Scope Question / Safe Fallback
+## Call 2: Objection Inccmplete
 **Scenario:** Customer asks about financing crypto startups, which is outside the knowledge base.
 
 **Result:**
@@ -55,7 +55,7 @@
 
 ---
 
-## Call 3: Successful Loan Qualification for a Restaurant Owner
+## Call 3: Out of scopre escalation
 **Scenario:** A restaurant owner is interested in expanding the business and completes the loan pre-qualification process.
 
 **Result:**

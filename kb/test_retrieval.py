@@ -1,50 +1,56 @@
-import requests
-import json
+import os
+import chromadb
 
-BASE_URL = "http://localhost:8000/query"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+CHROMA_PATH = os.path.join(BASE_DIR, "chroma_db")
 
-TEST_QUERIES = [
-    {
-        "type": "Qualification Question",
-        "query": "What are the minimum revenue requirements to qualify for a business loan?"
-    },
-    {
-        "type": "Policy / Rates Question",
-        "query": "What are the interest rates and tenure options for the loan?"
-    },
-    {
-        "type": "FAQ / Prepayment Question",
-        "query": "Is there any early payoff or prepayment penalty if I pay back early?"
-    },
-    {
-        "type": "Out-of-Scope Query",
-        "query": "Can I get a personal auto loan or home mortgage from Darwix?"
-    },
-    {
-        "type": "Documentation Question",
-        "query": "What documents do I need to submit during pre-qualification?"
-    }
-]
-
-def run_retrieval_eval():
-    print("Running Q2 Knowledge Base Retrieval Evaluation...\n")
+def run_retrieval_test():
+    client = chromadb.PersistentClient(path=CHROMA_PATH)
     
-    for idx, item in enumerate(TEST_QUERIES, 1):
-        response = requests.post(BASE_URL, json={"query": item["query"], "top_k": 1})
-        data = response.json()
+    try:
+        collection = client.get_collection("business_loan_kb")
+    except Exception as e:
+        print(f"Error connecting to Chroma collection: {e}")
+        return
+
+    queries = [
+        "What are the benefits of the Branch Partnership?",
+        "How do I renew my life insurance policy?",
+        "What is the maximum loan amount?",
+        "Do you accept cryptocurrency for premium payments?",
+        "What is Darwix Capital's refund policy?"
+    ]
+
+    output_lines = ["# Question 2: Retrieval Testing Results\n"]
+
+    for i, query in enumerate(queries, 1):
+        results = collection.query(
+            query_texts=[query],
+            n_results=1
+        )
         
-        print(f"--- Test Case #{idx} [{item['type']}] ---")
-        print(f"Question: {item['query']}")
+        output_lines.append(f"## Query {i}: {query}")
         
-        if data["grounded"] and len(data["results"]) > 0:
-            match = data["results"][0]
-            print(f"Retrieved Record: {match['record_id']} ({match['title']})")
-            print(f"Source Reference: {match['source']} | Category: {match['category']}")
-            print(f"Snippet: {match['content'][:150]}...")
-            print(f"Distance Score: {match['distance']}")
-            print(f"Verdict: CORRECT (Grounded & Relevant)\n")
+        if results['documents'] and len(results['documents'][0]) > 0:
+            chunk = results['documents'][0][0]
+            metadata = results['metadatas'][0][0]
+            distance = results['distances'][0][0]
+            
+            output_lines.append(f"- **Retrieved Chunk/Record:** {chunk[:200]}...")
+            output_lines.append(f"- **Source Reference:** {metadata.get('source', 'Unknown')} (Category: {metadata.get('category', 'Unknown')})")
+            output_lines.append(f"- **Distance (Lower is better):** {distance:.4f}")
+            output_lines.append(f"- **Relevance Explanation:** [TODO: Add 1 sentence explaining why this matches]")
+            output_lines.append(f"- **Verdict:** Correct / Partially Correct / Incorrect\n")
         else:
-            print(f"Verdict: UNGROUNDED / OUT OF SCOPE\n")
+            output_lines.append("- **Result:** No relevant chunks found.\n")
+
+
+    output_path = os.path.join(BASE_DIR, "retrieval_results.md")
+    with open(output_path, "w", encoding="utf-8") as f:
+        f.write("\n".join(output_lines))
+    
+    print(f"Successfully generated 5-query report at: {output_path}")
+    print("Open the markdown file to fill in the 'Relevance Explanation' and 'Verdict' fields.")
 
 if __name__ == "__main__":
-    run_retrieval_eval()
+    run_retrieval_test()

@@ -6,8 +6,9 @@ import chromadb
 from chromadb.utils import embedding_functions
 
 
-raw_dat_path="kb/data/raw_docs.json"
-chroma_path="D:/CHODER/Drawix/kb/chroma_db"
+base_dir=os.path.dirname(os.path.abspath(__file__))
+chroma_path=os.path.join(base_dir, "chroma_db")
+raw_dat_path=os.path.join(base_dir, "data" , "raw_docs.json")
 collection_name="business_loan_kb"
 
 chroma_client=chromadb.PersistentClient(path=chroma_path)
@@ -64,7 +65,7 @@ def extract_title_and_category(text: str, soure: str)-> tuple[str,str]:
 def run_ingestion():
     print("Starting ingestion...")
 
-    with open(raw_dat_path, "r") as f:
+    with open(raw_dat_path, "r", encoding="utf-8") as f:
         docs = json.load(f)
     seen_hashes = set()
     cleaned_records=[]

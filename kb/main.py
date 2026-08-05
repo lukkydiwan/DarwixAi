@@ -118,7 +118,7 @@ async def save_lead(request: Request):
             lead_data = arguments
             
         filename = f"kb/data/lead_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-        with open(filename, "w") as f:
+        with open(filename, "w", encoding="utf-8") as f:
             json.dump(lead_data, f, indent=4)
             
         print(f"Lead successfully saved to {filename}")
@@ -138,4 +138,4 @@ async def save_lead(request: Request):
     
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8080)
+    uvicorn.run(app, host="0.0.0.0", port=8000)
